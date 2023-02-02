@@ -1,10 +1,22 @@
 server:
   port: 9000
   servlet:
-    context-path: /card
+    context-path: /api/v1
 
 spring:
   application:
     name: Employee-Management
     title: Employee-Management
     version: 1.0.0
+    ################################################################################
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      show-sql: true
+      hibernate:
+        ddl-auto: create-drop
+      datasource:
+        url: jdbc:mysql://localhost:3306/sai_employeeManagement?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        username: root
+        password: root
+        driverClassName: com.mysql.cj.jdbc.Driver
+

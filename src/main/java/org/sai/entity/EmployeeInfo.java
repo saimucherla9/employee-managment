@@ -16,9 +16,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="employeeData") // Optional
+@Table(name = "employeeData") // Optional
 public class EmployeeInfo extends Base implements Serializable {
     @Id
+    //  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employeeGenerator")
     @SequenceGenerator(name = "employeeGenerator", sequenceName = "employeeGen", initialValue = 1000, allocationSize = 100)
     private Long empId;
@@ -26,7 +27,7 @@ public class EmployeeInfo extends Base implements Serializable {
     @NotEmpty(message = "First name cannot be empty")
     private String firstName;
     private String lastName;
-    @Length(min = 15 , max = 70, message = "Age cannot be less than 15 and more than 70")
+    // @Length(min = 15 , max = 70, message = "Age cannot be less than 15 and more than 70")
     private int age;
     @Column(name = "sex")
     private String sex;

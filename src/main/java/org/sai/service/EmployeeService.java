@@ -25,16 +25,20 @@ public class EmployeeService {
     private final ModelMapper modelMapper;
 
     public EmployeeDTO saveEmployeeInfo(EmployeeDTO employeeDTO) {
-        EmployeeInfo entityTobeCreated = modelMapper.map(employeeDTO , EmployeeInfo.class);
+        EmployeeInfo entityTobeCreated = modelMapper.map(employeeDTO, EmployeeInfo.class);
         EmployeeInfo entityCreated = employeeRepo.save(entityTobeCreated);
-        EmployeeDTO response = modelMapper.map(entityCreated, EmployeeDTO.class );
-        return  response;
+        EmployeeDTO response = modelMapper.map(entityCreated, EmployeeDTO.class);
+        return response;
     }
 
     public List<EmployeeDTO> getAllData() {
         List<EmployeeInfo> allData = employeeRepo.findAll();
-        List<EmployeeDTO> response=new ArrayList<>();
-        for(EmployeeInfo EmployeeInfo:allData)
+        List<EmployeeDTO> response = new ArrayList<>();
+        for (EmployeeInfo employeeInfo : allData) {
+            EmployeeDTO employeeDTO = modelMapper.map(employeeInfo, EmployeeDTO.class);
+            response.add(employeeDTO);
+        }
+        return response;
         //return  allData.stream().map(obj -> modelMapper.map(obj, EmployeeDTO.class )).collect(Collectors.toList());
     }
 }
